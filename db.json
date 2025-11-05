@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "示例项目",
+      "description": "这是一个用于演示的MechVision项目",
+      "createdAt": "2023-10-01T12:00:00Z",
+      "updatedAt": "2023-10-05T15:30:00Z",
+      "visionModels": [
+        {
+          "id": 101,
+          "type": "YOLOv5",
+          "weightsPath": "models/yolov5s.pt",
+          "classes": ["螺丝", "螺母", "垫片"]
+        }
+      ],
+      "cameraConfigs": [
+        {
+          "id": 201,
+          "brand": "Hikrobot",
+          "model": "MV-CE050-10GC",
+          "resolution": "2448×2048",
+          "fps": 30
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+      "role": "administrator",
+      "lastLogin": "2023-10-05T08:15:00Z"
+    }
+  ],
+  "system": {
+    "version": "1.0.0",
+    "license": "PRO",
+    "maxProjects": 50,
+    "maxCamerasPerProject": 4
+  }
+}

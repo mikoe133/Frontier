@@ -4,6 +4,7 @@ import { lazy } from 'react';
 const Layout = lazy(() => import('@/components/layout/Layout'));
 const Home = lazy(() => import('@/pages/Home'));
 const About = lazy(() => import('@/pages/About'));
+const Index = lazy(() => import('@/pages/App'));
 
 const routes: RouteObject[] = [
     {
@@ -12,6 +13,10 @@ const routes: RouteObject[] = [
         children: [
             {
                 index: true,
+                element: <Index />,
+            },
+            {
+                path: '/home',
                 element: <Home />,
             },
             {
