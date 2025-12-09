@@ -13,6 +13,17 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
-  }
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'https://mechanical.ai4x.com.cn',
+        changeOrigin: true,
+        secure: false, // 如果是 HTTPS 且证书有问题可设为 false（仅开发）
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      },
+    },
+  },
 })
 
