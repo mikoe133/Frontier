@@ -1,0 +1,47 @@
+name: 自定义actions名称 (Vite Frontend)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted, hangzhou, dev]
+
+    steps:
+      - name: Validate required secrets
+        run: |
+          if [ -z "${{ secrets.VITE_API_BASE_URL }}" ]; then
+            echo "❌ Missing required secret: VITE_API_BASE_URL"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Generate image tag
+        run: |
+          echo "IMAGE_TAG=$(date +'%Y%m%d-%H%M%S')-$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_ENV
+
+      - name: 🔍 Debug - Check structure
+        run: |
+          pwd
+          ls -la
+          cat package.json | grep name
+      - name: Build and push Docker image
+        env:
+          APP_NAME: 自定义APP名
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+        run: |
+          set -e
+          echo "Building with VITE_API_BASE_URL: ${VITE_API_BASE_URL}"
+          docker build \
+            -f Dockerfile \
+            --build-arg VITE_API_BASE_URL="${VITE_API_BASE_URL}" \
+            -t 自定义镜像名前缀/$APP_NAME:$IMAGE_TAG .
+
+          docker push 自定义镜像名前缀/$APP_NAME:$IMAGE_TAG
+
+          echo "Image pushed successfully."  # 确保这里的引号是匹配的

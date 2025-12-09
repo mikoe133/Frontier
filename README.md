@@ -72,3 +72,17 @@ export default defineConfig([
   },
 ])
 ```
+ build process:
+  1.运行
+  github actions
+
+  2.查看镜像名
+  docker images(例如hangzhou-118:5001/mechvision-proj:20251114-021152-187bdb8b
+  )
+
+  3.删除上次可能存在的容器名
+  docker rm -f /mechvision-proj
+
+  4.镜像运行
+  docker run -d   --name mechvision-proj   -p 10000:80   --restart unless-stopped  hangzhou-118:5001/mechvision-proj:20251209-113214-86593160
+
