@@ -3,8 +3,8 @@ import axios, {type AxiosRequestConfig } from "axios";
 type RequestConfig = AxiosRequestConfig; // 包含 params, responseType, headers 
 
 const axiosInstance = axios.create({
-    baseURL:import.meta.env.VITE_API_BASE_URL,
-    timeout: (Number(import.meta.env.VITE_TIMEOUT) || 30) * 60 * 1000,
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  timeout: Number(import.meta.env.VITE_TIMEOUT) || 30000,
 });
 
 // 请求拦截器
