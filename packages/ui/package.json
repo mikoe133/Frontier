@@ -1,0 +1,9 @@
+{
+    "name": "myworkspace-ui",
+    "version": "1.0.0",
+    "description": "A workspace for my UI components",
+    "private": true,
+    "main": "src/index.js",
+    "module": "src/index.js",
+    "types": "src/index.d.ts"
+}
